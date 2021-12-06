@@ -25,6 +25,7 @@ class CustomAccountManager(BaseUserManager):
         user = self.model(email=email, nombre=nombre,
                           ciudad=ciudad, **other_fields)
         user.set_password(password)
+        user.set
         user.save()
         return user
 
@@ -55,6 +56,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
         related_name='following',
         symmetrical=False,
         blank=True)
+    
     slug = models.SlugField(max_length=255, unique=True)
 
     register_date = models.DateTimeField(default=timezone.now)
@@ -90,3 +92,5 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
         if not self.slug:
             self.slug = slugify(rand_slug() + "-" + self.email)
         super(UserProfile, self).save(*args, **kwargs)
+
+

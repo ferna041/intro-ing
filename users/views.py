@@ -69,6 +69,7 @@ def user_detail(request, slug):
     except:
         messages.warning(
             request, 'Debes Iniciar sesion para mas funcionalidades')
+        return redirect("green:home.html")
 
     return render(request, 'users/user_detail.html', {'user_detail': user, "is_follower": is_follower})
 
@@ -83,3 +84,38 @@ def follow(request, slug):
     to_follow.save
     return redirect(to_follow)
 
+
+
+
+
+@login_required(login_url='users:profile.html')
+def following_view(request):
+    return render(request, 'users/seguidos_profile.html')
+
+
+@login_required(login_url='users:profile.html')
+def followers_view(request):
+    return render(request, 'users/seguidores_profile.html')
+
+
+@login_required(login_url='users:profile.html')
+def followers_user_view(request):
+    return render(request, 'users/seguidores_user.html')
+
+
+@login_required(login_url='users:profile.html')
+def following_user_view(request):
+    
+    return render(request, 'users/seguidos_user.html', { 'user_detail': user})
+
+
+
+@login_required(login_url='green:home.html')
+def post_profile(request):
+    return render(request, "users/post_profile.html")
+
+
+@login_required(login_url='green:home.html')
+def post_user(request, slug):
+    user = get_object_or_404(get_user_model(), slug=slug)
+    return render(request, "users/post_user.html", { "user_detail": user})
