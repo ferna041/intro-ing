@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 from .models import Post
 from green.form import PostForm
 
@@ -364,7 +364,7 @@ def create_post(request):
     
     form = PostForm()
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post =form.save(commit=False)
             post.author = current_user

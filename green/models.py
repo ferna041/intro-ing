@@ -8,47 +8,47 @@ class Post(models.Model):
     identifier = models.UUIDField(primary_key=True, default=uuid.uuid4)
     slug = models.SlugField(max_length=20)
     grados=(
-        ('1', 'Primero basico'),
-        ('2', 'Segundo basico'),
-        ('3', 'Tercero basico'),
-        ('4', 'Cuarto basico'),
-        ('5', 'Quinto basico'),
-        ('6', 'Sexto basico'),
-        ('7', 'Septimo basico'),
-        ('8', 'Octavo basico'),
-        ('I', 'Primero medio'),
-        ('II', 'Segundo medio'),
-        ('III', 'Tercero medio'),
-        ('IV', 'Cuarto medio'),
-        ("PDT", "PDT"),
+        ('Primero basico', 'Primero basico'),
+        ('Segundo basico', 'Segundo basico'),
+        ('Tercero basico', 'Tercero basico'),
+        ('Cuarto basico', 'Cuarto basico'),
+        ('Quinto basico', 'Quinto basico'),
+        ('Sexto basico', 'Sexto basico'),
+        ('Septimo basico', 'Septimo basico'),
+        ('Octavo basico', 'Octavo basico'),
+        ('Primero medio', 'Primero medio'),
+        ('Segundo medio', 'Segundo medio'),
+        ('Tercero medio', 'Tercero medio'),
+        ('Cuarto medio', 'Cuarto medio'),
+        ('PDT', 'PDT'),
     )
-    grado = models.CharField(max_length=12, choices=grados)
+    grado = models.CharField(max_length=14, choices=grados)
     asignaturas_Basica= (
-        ('N', 'No'),
-        ('M', 'Matemáticas '),
-        ('C', 'Ciencias Naturales '),
-        ('L', 'Lenguaje y comunicación '),
-        ('H', 'Historia, Geografía y Ciencias Sociales '),
-        ('I', 'Ingles'),
-        ('O', 'Otros'),
+        ('No', 'No'),
+        ('Matemáticas', 'Matemáticas '),
+        ('Ciencias Naturales', 'Ciencias Naturales'),
+        ('Lenguaje y comunicación', 'Lenguaje y comunicación'),
+        ('Historia, Geografía y Ciencias Sociales', 'Historia, Geografía y Ciencias Sociales'),
+        ('Ingles', 'Ingles'),
+        ('Otros', 'Otros'),
     )
-    asignatura_Basica= models.CharField(max_length=1, choices= asignaturas_Basica,default='N')
+    asignatura_Basica= models.CharField(max_length=39, choices= asignaturas_Basica,default='N')
     asignaturas_Media= (
-        ('N', 'No'),
-        ('Z', 'Matemáticas '),
-        ('C', 'Matemáticas avanzadas'),
-        ('L', 'Lenguaje y comunicación '),
-        ('H', 'Historia, Geografía y Ciencias Sociales '),
-        ('F', 'Física '),
-        ('E', 'Física avanzada '),
-        ('Q', 'Química '),
-        ('S', 'Química avanzada'),
-        ('B', 'Biología '),
-        ('A', 'Biología avanzada'),
-        ('I', 'Ingles'),
-        ('O', 'Otros'),
+        ('No', 'No'),
+        ('Matemáticas', 'Matemáticas '),
+        ('Matemáticas avanzadas', 'Matemáticas avanzadas'),
+        ('Lenguaje y comunicación', 'Lenguaje y comunicación'),
+        ('Historia, Geografía y Ciencias Sociales', 'Historia, Geografía y Ciencias Sociales'),
+        ('Física', 'Física '),
+        ('Física avanzada', 'Física avanzada'),
+        ('Química', 'Química '),
+        ('Química avanzada', 'Química avanzada'),
+        ('Biología', 'Biología '),
+        ('Biología avanzada', 'Biología avanzada'),
+        ('Ingles', 'Ingles'),
+        ('Otros', 'Otros'),
     )
-    asignatura_Media= models.CharField(max_length=1, choices=asignaturas_Media, default='N' )
+    asignatura_Media= models.CharField(max_length=39, choices=asignaturas_Media, default='No' )
 
     description = models.TextField()
     image = models.ImageField(

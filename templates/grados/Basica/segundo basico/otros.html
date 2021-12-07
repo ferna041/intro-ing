@@ -5,8 +5,8 @@
   <h1 class='text-center my-4'>Últimos Posts</h1>
 
   {% for post in posts %}
-  {% if post.grado == '2'%} 
-    {% if post.asignatura_Basica == 'O'%}
+  {% if post.grado == 'Segundo basico'%} 
+    {% if post.asignatura_Basica == 'Otros'%}
         <div class="card shadow border mb-3">
           <img src={{post.image.url}} class="card-img-top" />
 

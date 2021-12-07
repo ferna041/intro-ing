@@ -14,7 +14,23 @@ x="M"
       </a>
       <p class="card-text">
         {{post.description}}
+
       </p>
+      <p class="card-text">
+        {{post.grado}}
+      </p>
+    {% if  asignatura_Media == 'Matemáticas' or 'Matemáticas avanzadas' %}
+      <p class="card-text">
+        {{post.asignatura_Media}}
+      </p>
+    {% endif %}
+    {% if  asignatura_Basica == 'Matemáticas' or 'Ciencias Naturales'%}
+      <p class="card-text">
+        {{post.asignatura_Basica}}
+      </p>
+    {% endif %}
+      
+    
     </div>
 
     <div class='card-footer'>
