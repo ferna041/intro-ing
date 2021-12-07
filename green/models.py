@@ -61,7 +61,6 @@ class Post(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
         related_name="green_post"
     )
-
     class Meta:
         ordering = ("-published",)
 

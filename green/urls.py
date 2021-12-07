@@ -109,7 +109,7 @@ urlpatterns = [
     path("pdt_fisicaA", views.fa, name="pdt_fisicaA"),
     path("pdt_matematicasA", views.ma, name="pdt_matematicasA"),
     
-    path('post/', views.create_post, name= 'create-post'),
+    path('post/', views.create_post, name= 'create_post'),
 ]
 
 

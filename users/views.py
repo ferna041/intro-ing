@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password
 from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
-
+from green.models import Post
 from .forms import UserLoginForm, UserSignUpForm
 
 
@@ -95,6 +95,9 @@ def following_view(request):
 
 @login_required(login_url='users:profile.html')
 def followers_view(request):
+    if request.user.is_authenticated:
+        user = request.user
+        data = user.followers.all()
     return render(request, 'users/seguidores_profile.html')
 
 
@@ -105,17 +108,23 @@ def followers_user_view(request):
 
 @login_required(login_url='users:profile.html')
 def following_user_view(request):
-    
     return render(request, 'users/seguidos_user.html', { 'user_detail': user})
 
 
 
 @login_required(login_url='green:home.html')
 def post_profile(request):
-    return render(request, "users/post_profile.html")
+    data = Post.objects.all()
+    return render(request, "users/post_profile.html", {"posts": data})
 
 
 @login_required(login_url='green:home.html')
-def post_user(request, slug):
-    user = get_object_or_404(get_user_model(), slug=slug)
-    return render(request, "users/post_user.html", { "user_detail": user})
+def post_user(request):
+    data = Post.objects.all()
+
+    return render(request, "users/post_user.html", { "user_detail": user, "posts": data})
+
+
+
+
+

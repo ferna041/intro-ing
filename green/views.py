@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Post
 from green.form import PostForm
+
 
 def home(request):
     data = Post.objects.all()
@@ -343,10 +344,30 @@ def ma(request):
     data = Post.objects.all()
     return render(request, "grados/media/PDT/Mat_adv.html", {"posts": data})
 
+from users import models
+from users import views
+from users import forms
+from django.contrib.auth import authenticate, get_user_model, login, logout
+from django.contrib.auth.models import User
 
+
+from django.contrib.auth.decorators import login_required
+
+
+
+@login_required(login_url='green:home.html')
 def create_post(request):
+    
+    if request.user.is_authenticated:
+         current_user = request.user
+     
+    
     form = PostForm()
     if request.method == 'POST':
-        print(request.POST)
-    
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post =form.save(commit=False)
+            post.author = current_user
+            post.save()
+            return render(request, 'home.html')
     return render(request, 'post/posteos.html', {"form": form})

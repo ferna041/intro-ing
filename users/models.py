@@ -25,7 +25,6 @@ class CustomAccountManager(BaseUserManager):
         user = self.model(email=email, nombre=nombre,
                           ciudad=ciudad, **other_fields)
         user.set_password(password)
-        user.set
         user.save()
         return user
 

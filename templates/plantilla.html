@@ -370,8 +370,17 @@
 
           
         
+<div class="position-sticky top-100 start-100 translate-middle btn btn-lg btn-primary rounded-pill">
+  <button type="button" class="btn btn-primary btn-floating" href = "{% url "green:create_post" %}">
+    <a class="fas fa-plus" href = "{% url "green:create_post" %}">
+    </a>
     
+  </button>
+</div>
     
+
+
+
   </header>
 
   {% for message in messages %}
