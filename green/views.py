@@ -7,6 +7,13 @@ def home(request):
     data = Post.objects.all()
     return render(request, "home.html", {"posts": data})
 
+
+
+
+
+
+
+
 #primero basico
 def m1(request):
     data = Post.objects.all()
@@ -369,5 +376,25 @@ def create_post(request):
             post =form.save(commit=False)
             post.author = current_user
             post.save()
-            return render(request, 'home.html')
+            return redirect('green:home.html')
     return render(request, 'post/posteos.html', {"form": form})
+
+
+from django.views import View
+
+class Post_Detail(View):
+    def get(self, request, pk, *args, **kwargs):
+        post = Post.objects.get(pk=pk)
+        form = CommentForm()
+
+        context = {
+            'post': post,
+            'form': form,
+        }
+
+        return render(request, 'social/post_detail.html', context)
+
+    def post(self, request, *args, **kwargs):
+        pass
+
+

@@ -1,12 +1,13 @@
 from django.urls import path
 from django.views.generic import TemplateView
 from . import views
+from .views import Post_Detail
 
 app_name = "green"
 
 urlpatterns = [
     path("",views.home, name="home.html"),
-        path("Basica_Matematicas_primero/",views.m1, name="Basica_Matematicas_primero"),
+    path("Basica_Matematicas_primero/",views.m1, name="Basica_Matematicas_primero"),
     path("Basica_Lenguaje_primero/",views.l1, name="Basica_Lenguaje_primero"),
     path("Basica_Ciencias_primero/",views.c1, name="Basica_Ciencias_primero"),
     path("Basica_Historia_primero/",views.h1, name="Basica_Historia_primero"),
@@ -110,6 +111,8 @@ urlpatterns = [
     path("pdt_matematicasA", views.ma, name="pdt_matematicasA"),
     
     path('post/', views.create_post, name= 'create_post'),
+    path('lol/<int:pk>/', Post_Detail.as_view(), name='lol'),
+    path('post/<int:pk>', views.Post_Detail, name='post_detail'),
 ]
 
 

@@ -4,7 +4,7 @@ x="M"
 <div class='container col-md-8 col-xl-6'>
   <h1 class='text-center my-4'>Últimos Posts</h1>
 
-  {% for post in posts %}
+
   <div class="card shadow border mb-3">
     <img src={{post.image.url}} class="card-img-top" />
 
@@ -34,8 +34,7 @@ x="M"
       </p>
     {% endif %}
       
-    <a href=>
-      <h5 class="card-title">ir a la publicación</h5>
+    <a  href = {{  }}>Ir a la publicación</a>
     </div>
 
     <div class='card-footer'>
@@ -45,7 +44,7 @@ x="M"
     </div>
 
   </div>
-  {% endfor %}
+
   {% endblock %}
 </div>
 

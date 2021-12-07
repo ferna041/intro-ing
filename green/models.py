@@ -45,7 +45,7 @@ class Post(models.Model):
         ('Química avanzada', 'Química avanzada'),
         ('Biología', 'Biología '),
         ('Biología avanzada', 'Biología avanzada'),
-        ('Ingles', 'Ingles'),
+        ('Inglés', 'Inglés'),
         ('Otros', 'Otros'),
     )
     asignatura_Media= models.CharField(max_length=39, choices=asignaturas_Media, default='No' )
@@ -68,13 +68,18 @@ class Post(models.Model):
         return self.description
 
 
+
+from django.contrib.auth.models import User
+
 class Comment(models.Model):
-    text= models.TextField()
-    author= models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
-        related_name="green_comments"
-    )
-    post = models.ForeignKey(
-        Post, on_delete=models.CASCADE,
-        related_name="green_comments"
-    )
+    comment = models.TextField()
+    created_on = models.DateTimeField(default=timezone.now)
+    post = models.ForeignKey('Post', on_delete=models.CASCADE)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+
+
+def get_absolute_urll(Post):
+    return reverse('green:Post_Detail', args=[Post.pk])
+
+
