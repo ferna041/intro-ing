@@ -49,7 +49,15 @@ class Post(models.Model):
         ('Otros', 'Otros'),
     )
     asignatura_Media= models.CharField(max_length=39, choices=asignaturas_Media, default='No' )
+    contactos=(
+    ("Email", "Email"),
+    ("instagram", "instagram"),
+    ("whatsapp", "whatsapp")
+    )
+    contacto = models.CharField(max_length=20, choices=contactos, default="Email")
 
+
+    dato_de_contacto = models.TextField(default="")
     description = models.TextField()
     image = models.ImageField(
         upload_to="images/",
@@ -79,7 +87,5 @@ class Comment(models.Model):
 
 
 
-def get_absolute_urll(Post):
-    return reverse('green:Post_Detail', args=[Post.pk])
 
 

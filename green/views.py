@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import Post
-from green.form import PostForm
+from green.form import PostForm , SocialCommentForm
 
 
 def home(request):
@@ -382,19 +382,16 @@ def create_post(request):
 
 from django.views import View
 
-class Post_Detail(View):
-    def get(self, request, pk, *args, **kwargs):
+def Comment(self, request, pk, *args, **kwargs):
         post = Post.objects.get(pk=pk)
-        form = CommentForm()
+        form = SocialCommentForm()
 
         context = {
             'post': post,
             'form': form,
         }
 
-        return render(request, 'social/post_detail.html', context)
+        return render(request, 'post_detail.html', context)
 
-    def post(self, request, *args, **kwargs):
-        pass
-
+   
 

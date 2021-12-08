@@ -1,7 +1,9 @@
 from django.urls import path
 from django.views.generic import TemplateView
+
+from green.views import Comment
 from . import views
-from .views import Post_Detail
+from .views import Comment
 
 app_name = "green"
 
@@ -111,8 +113,8 @@ urlpatterns = [
     path("pdt_matematicasA", views.ma, name="pdt_matematicasA"),
     
     path('post/', views.create_post, name= 'create_post'),
-    path('lol/<int:pk>/', Post_Detail.as_view(), name='lol'),
-    path('post/<int:pk>', views.Post_Detail, name='post_detail'),
+    
+    path('post/<int:pk>', views.Comment, name='post_detail'),
 ]
 
 
